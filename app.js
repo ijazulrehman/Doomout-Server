@@ -1,20 +1,12 @@
 var express = require('express');
-var io = require('socket.io');
 var cors = require('cors');
 var path = require("path");
 var bodyParser = require("body-parser");
 var index = require('./routes/index');
-var validation = require('./routes/validations');
+var wishlist = require('./routes/wishlist');
 //Init App and Socket
 var app = express()
-  , server = require('http').createServer(app)
-  , io = io.listen(server,{
-    serveClient: false,
-    // below are engine.IO options
-    pingInterval: 10000,
-    pingTimeout: 5000,
-    cookie: false
-  });
+  , server = require('http').createServer(app);
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -55,7 +47,7 @@ app.use('/public',express.static(path.join(__dirname, 'public')));
 
 // super routers
 app.use('/', index);
-app.use('/validations', validation);
+app.use('/wishlist', wishlist);
 
 
 // Set Port
@@ -66,7 +58,3 @@ app.set('port', (process.env.PORT || 1122));
 server.listen(app.get('port'), function(){
   console.log("Listening at port : "+ app.get('port'));
  });
-
-  //initializing the socket of socket.js
-  var socket = require('./socket');
-  socket.start(io);
