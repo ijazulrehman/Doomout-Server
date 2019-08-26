@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var cors = require('cors');
 var path = require("path");
@@ -64,10 +65,5 @@ app.use('/wishlist', wishlist);
 module.exports.handler = serverless(app);
  
 // or as a promise
-const handler = serverless(app);
-module.exports.handler = async (event, context) => {
-  // you can do other things here
-  const result = await handler(event, context);
-  // and here
-  return result;
-};
+module.exports = app;
+module.exports.handler = serverless(app);
