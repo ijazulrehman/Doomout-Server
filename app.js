@@ -6,7 +6,8 @@ var index = require('./routes/index');
 var wishlist = require('./routes/wishlist');
 //Init App and Socket
 var app = express()
-  , server = require('http').createServer(app);
+  // , server = require('http').createServer(app);
+  const serverless = require('serverless-http');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -51,10 +52,22 @@ app.use('/wishlist', wishlist);
 
 
 // Set Port
-app.set('port', (process.env.PORT || 1122));
+// app.set('port', (process.env.PORT || 1122));
 
 
 //listening the server at specific port
-server.listen(app.get('port'), function(){
-  console.log("Listening at port : "+ app.get('port'));
- });
+// server.listen(app.get('port'), function(){
+//   console.log("Listening at port : "+ app.get('port'));
+//  });
+
+// this is it!
+module.exports.handler = serverless(app);
+ 
+// or as a promise
+const handler = serverless(app);
+module.exports.handler = async (event, context) => {
+  // you can do other things here
+  const result = await handler(event, context);
+  // and here
+  return result;
+};

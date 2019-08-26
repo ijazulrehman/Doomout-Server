@@ -16,6 +16,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.15",
     "mongoose-double": "0.0.1",
-    "mongoose-timestamp": "^0.6.0"
+    "mongoose-timestamp": "^0.6.0",
+    "serverless-http": "^2.3.0"
   }
 }
