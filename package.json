@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.3.15",
+    "mongoose": "^5.7.5",
     "mongoose-double": "0.0.1",
     "mongoose-timestamp": "^0.6.0",
     "serverless-http": "^2.3.0"
